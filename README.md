@@ -4,4 +4,4 @@ The Python unit testing framework, sometimes referred to as “PyUnit,” is a P
 
 The source code is exported from  http://pyunit.sourceforge.net/
 
-In this repository, we move move the classes of original source code into different .py files.
+In this repository, the classes of original source code are moved into different .py files.
