@@ -6,9 +6,9 @@ import os
 import types
 
 from testresult import TestResult
+from test import Test
 
-
-class TestCase:
+class TestCase(Test):
     """A class whose instances are single test cases.
 
     By default, the test code itself should be placed in a method named

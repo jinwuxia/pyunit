@@ -5,7 +5,9 @@ import string
 import os
 import types
 
-class TestSuite:
+from test import Test
+
+class TestSuite(Test):
     """A test suite is a composite test consisting of a number of TestCases.
 
     For use, create an instance of TestSuite, then add test case instances.

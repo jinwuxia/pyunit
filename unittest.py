@@ -55,8 +55,9 @@ import string
 import os
 import types
 
-from testsuite import TestSuite
-from testcase import TestCase
+#from testsuite import TestSuite
+#from testcase import TestCase
+from test import Test
 from texttestresult import TextTestResult
 
 ##############################################################################
@@ -83,7 +84,7 @@ class TestLoader:
     """
     testMethodPrefix = 'test'
     sortTestMethodsUsing = cmp
-    suiteClass = TestSuite
+    suiteClass = Test
 
     def loadTestsFromTestCase(self, testCaseClass):
         """Return a suite of all tests cases contained in testCaseClass"""
@@ -95,7 +96,8 @@ class TestLoader:
         tests = []
         for name in dir(module):
             obj = getattr(module, name)
-            if type(obj) == types.ClassType and issubclass(obj, TestCase):
+            #if type(obj) == types.ClassType and issubclass(obj, TestCase):
+            if type(obj) == types.ClassType and issubclass(obj, Test):
                 tests.append(self.loadTestsFromTestCase(obj))
         return self.suiteClass(tests)
 
@@ -129,14 +131,14 @@ class TestLoader:
         #import unittest
         if type(obj) == types.ModuleType:
             return self.loadTestsFromModule(obj)
-        elif type(obj) == types.ClassType and issubclass(obj, TestCase):
+        elif type(obj) == types.ClassType and issubclass(obj, Test):
             return self.loadTestsFromTestCase(obj)
         elif type(obj) == types.UnboundMethodType:
             return obj.im_class(obj.__name__)
         elif callable(obj):
             test = obj()
-            if not isinstance(test, TestCase) and \
-               not isinstance(test, TestSuite):
+            if not isinstance(test, Test):
+               #not isinstance(test, TestSuite):
                 raise ValueError, \
                       "calling %s returned %s, not a test" % (obj,test)
             return test
@@ -184,10 +186,10 @@ def _makeLoader(prefix, sortUsing, suiteClass=None):
 def getTestCaseNames(testCaseClass, prefix, sortUsing=cmp):
     return _makeLoader(prefix, sortUsing).getTestCaseNames(testCaseClass)
 
-def makeSuite(testCaseClass, prefix='test', sortUsing=cmp, suiteClass=TestSuite):
+def makeSuite(testCaseClass, prefix='test', sortUsing=cmp, suiteClass=Test):
     return _makeLoader(prefix, sortUsing, suiteClass).loadTestsFromTestCase(testCaseClass)
 
-def findTestCases(module, prefix='test', sortUsing=cmp, suiteClass=TestSuite):
+def findTestCases(module, prefix='test', sortUsing=cmp, suiteClass=Test):
     return _makeLoader(prefix, sortUsing, suiteClass).loadTestsFromModule(module)
 
 
