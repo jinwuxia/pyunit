@@ -57,8 +57,8 @@ import types
 
 #from testsuite import TestSuite
 #from testcase import TestCase
-from test import Test
-from texttestresult import TextTestResult
+from framework.test import Test
+from textui.texttestresult import TextTestResult
 
 ##############################################################################
 # Test framework core

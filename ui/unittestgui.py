@@ -36,8 +36,8 @@ import traceback
 import string
 tk = Tkinter # Alternative to the messy 'from Tkinter import *' often seen
 
-from guitestresult import GUITestResult
-from progressbar import ProgressBar
+from ui.guitestresult import GUITestResult
+from ui.progressbar import ProgressBar
 ##############################################################################
 # GUI framework classes
 ##############################################################################
